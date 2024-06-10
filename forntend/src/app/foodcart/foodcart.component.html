@@ -1,0 +1,35 @@
+<div class="container">
+
+  <ul>
+    <li *ngFor="let cartitem of cart.items">
+      <div>
+        <img [src]="cartitem.food.imageurl" [alt]="cartitem.food.name" srcset="">
+      </div>
+    <div>
+      <a [routerLink]="'/food/' + cartitem.food.id">{{cartitem.food.name}}</a>
+    </div>
+  <div>
+    <select [value]="cartitem.quantity" #quantityselect (change)="changequantity(cartitem, quantityselect.value)">
+      <option *ngFor="let qty of [1, 2, 3, 4, 5]" [value]="qty">{{ qty }}</option>
+    </select>
+  </div>
+<div>
+  <span>
+    ₹{{ cartitem.price }}
+  </span>
+</div>
+<div >
+  <button class="remove" (click)="removeCart(cartitem)">Remove</button>
+</div>
+</li>
+</ul>
+<div class="checkout">
+  <div class="foodcount">
+    {{cart.items.length}}
+  </div>  
+  <div class="totalprice">
+  ₹{{cart.totalprice}}
+  </div>  
+  <a routerLink="/checkout">Proceed to checkout</a>
+</div>
+</div>
